@@ -1,16 +1,5 @@
 # README
 
-## What is Compalex?
-Compalex is a lightweight script to compare two database schemas. It supports MySQL, MS SQL Server and PostgreSQL.
-
-Try [demo](http://demo.compalex.net/) or visit [http://compalex.net/](http://compalex.net/)
-
-## How to use 
-
-The easiest way to use Compalex is to use Docker.
-
-You can build your own container using Dockerfile or use Docker Hub image:
-
 ```bash
 docker run -it -e DATABASE_DRIVER='mysql' \
 -e DATABASE_ENCODING='utf8' \
@@ -30,26 +19,26 @@ docker run -it -e DATABASE_DRIVER='mysql' \
 -p 8000:8000 dlevsha/compalex
 ```
 
-You need to change variables for your own 
+You need to change variables for your own
 
 `DATABASE_DRIVER` - database driver, possible value
 
 - `mysql` - for MySQL database
 - `pgsql` - for PostgreSQL database
 - `dblib` - for Microsoft SQL Server database
-- `oci`   - for Oracle database
+- `oci` - for Oracle database
 
-`DATABASE_HOST` and `DATABASE_HOST_SECONDARY`  - database host name or IP for first and second server
+`DATABASE_HOST` and `DATABASE_HOST_SECONDARY` - database host name or IP for first and second server
 
 If your compared DB run locally:
 
-- for [MacOS](https://docs.docker.com/docker-for-mac/networking/) and [Windows](https://docs.docker.com/docker-for-windows/networking/) 
-user: use ```host.docker.internal``` instead of ```localhost``` in ```DATABASE_HOST``` and ```DATABASE_HOST_SECONDARY``` param.
-Because we run script inside container we need to use Host machine IP for connection. 
+- for [MacOS](https://docs.docker.com/docker-for-mac/networking/) and [Windows](https://docs.docker.com/docker-for-windows/networking/)
+  user: use `host.docker.internal` instead of `localhost` in `DATABASE_HOST` and `DATABASE_HOST_SECONDARY` param.
+  Because we run script inside container we need to use Host machine IP for connection.
 
-- for [Linux](https://docs.docker.com/network/host/) user: use ```--network host``` option and ```localhost``` in ```DATABASE_HOST``` and ```DATABASE_HOST_SECONDARY``` param.
+- for [Linux](https://docs.docker.com/network/host/) user: use `--network host` option and `localhost` in `DATABASE_HOST` and `DATABASE_HOST_SECONDARY` param.
 
-If you connect to DB outside your machine (external IP) use: ```-e DATABASE_HOST='[Your external IP]'```.
+If you connect to DB outside your machine (external IP) use: `-e DATABASE_HOST='[Your external IP]'`.
 
 `DATABASE_PORT` and `DATABASE_PORT_SECONDARY` - database port for first and second server
 
@@ -62,11 +51,11 @@ Default ports for DB:
 
 `DATABASE_NAME` and `DATABASE_NAME_SECONDARY` - first and second database name
 
-`DATABASE_USER` / `DATABASE_PASSWORD`  and `DATABASE_USER_SECONDARY` / `DATABASE_PASSWORD_SECONDARY` - login and password to access your databases 
+`DATABASE_USER` / `DATABASE_PASSWORD` and `DATABASE_USER_SECONDARY` / `DATABASE_PASSWORD_SECONDARY` - login and password to access your databases
 
 `DATABASE_DESCRIPTION` and `DATABASE_DESCRIPTION_SECONDARY` - server description (not necessary). For information only. These names will display as a database name.
 
-You can also use ```docker-compose.yml```.
+You can also use `docker-compose.yml`.
 
 ```
 version: "3.7"
@@ -96,15 +85,16 @@ services:
 ```
 
 ## Requirements
-If you prefer use Compalex as PHP script please read instruction bellow. 
+
+If you prefer use Compalex as PHP script please read instruction bellow.
 
 Compalex is only supported by PHP 5.4 and up with PDO extension.
 
 ## Installation
 
-	$ git clone https://github.com/dlevsha/compalex.git
-	$ cd compalex
-	
+    $ git clone https://github.com/trekkiebigyan/Database-Compare.git
+    $ cd compalex
+
 Open `.environment`. You'll see configuration params
 
 ```ini
@@ -132,20 +122,20 @@ DATABASE_PASSWORD_SECONDARY =
 DATABASE_DESCRIPTION_SECONDARY = Production database
 ```
 
-where 
+where
 
 `DATABASE_DRIVER` - database driver, possible value
 
 - `mysql` - for MySQL database
 - `pgsql` - for PostgreSQL database
 - `dblib` - for Microsoft SQL Server database
-- `oci`   - for Oracle database
+- `oci` - for Oracle database
 
 `[ Primary connection params ]` and `[ Secondary connection params ]`sections describes settings for first and second databases.
 
 Where
 
-`DATABASE_HOST` and `DATABASE_HOST_SECONDARY`  - database host name or IP for first and second server
+`DATABASE_HOST` and `DATABASE_HOST_SECONDARY` - database host name or IP for first and second server
 
 `DATABASE_PORT` and `DATABASE_PORT_SECONDARY` - database port for first and second server
 
@@ -156,20 +146,18 @@ Default ports:
 - `1433` - MSSQL
 - `1521` - Oracle
 
-
 `DATABASE_NAME` and `DATABASE_NAME_SECONDARY` - first and second database name
 
-`DATABASE_USER` / `DATABASE_PASSWORD`  and `DATABASE_USER_SECONDARY` / `DATABASE_PASSWORD_SECONDARY` - login and password to access your databases 
+`DATABASE_USER` / `DATABASE_PASSWORD` and `DATABASE_USER_SECONDARY` / `DATABASE_PASSWORD_SECONDARY` - login and password to access your databases
 
 `DATABASE_DESCRIPTION` and `DATABASE_DESCRIPTION_SECONDARY` - server description (not necessary). For information only. These names will display as a database name.
 
-Inside `compalex` directory run  
+Inside `compalex` directory run
 
-	$ php -S localhost:8000
-	
+    $ php -S localhost:8000
+
 Now open your browser and type `http://localhost:8000/`
 
 You'll see database schema of two compared databases.
 
 -
-	
